@@ -1,0 +1,52 @@
+@import "../../styles/palette.scss";
+
+.jobs-filters {
+  margin-top: -2rem;
+  .filters {
+    padding: 1em;
+    border-radius: 0.2em;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1em;
+  }
+
+  .search,
+  .location,
+  .employment-type,
+  .work-setting {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+    border: 1px solid darken($color-bg, 70);
+    padding: 0.25em;
+    width: 100%;
+    border-radius: 0.2em;
+    input,
+    select {
+      width: 100%;
+      padding: 0.5em;
+      border: none;
+      outline: none;
+    }
+    svg {
+      color: darken($color-bg, 70);
+    }
+  }
+  @media (max-width: 768px) {
+    .filters {
+      flex-direction: column;
+    }
+  }
+}
+select {
+  appearance: none;
+}
+.jobs-list-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 1em 0;
+}
