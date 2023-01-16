@@ -1,12 +1,13 @@
 @import "../../styles/palette.scss";
 
 header {
-  background-color: $color-primary;
+  background-color: var(--special-bg-color);
   .navbar {
     height: 70px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
   }
   .brand {

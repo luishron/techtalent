@@ -1,8 +1,8 @@
-@import "../../styles/palette.scss";
 footer {
   font-size: 0.8em;
   width: 100%;
   margin: 1em 0;
+
   .container {
     display: flex;
     flex-direction: row;
@@ -11,14 +11,14 @@ footer {
   }
 
   a {
-    color: $color-primary;
+    color: var(--special-bg-color);
     transition: all ease-in-out 0.3s;
     &:hover {
-      color: darken($color-primary, 10);
+      color: var(--color-secondary-800);
     }
   }
   .copyright {
-    color: $color-text;
+    color: var(--color-text-600);
   }
   .social-media {
     display: flex;

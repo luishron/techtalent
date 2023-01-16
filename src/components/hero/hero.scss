@@ -1,14 +1,14 @@
 @import "../../styles/palette.scss";
 
 .hero {
-  background-color: $color-primary;
+  background-color: var(--special-bg-color);
   padding: 2em 0 4em 0;
 
   .hero-title {
-    color: lighten($color-green, 25);
+    color: var(--special-text-color);
     font-weight: 600;
     line-height: 1.25em;
-
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
     .brand {
       color: lighten($color-green, 45);
     }

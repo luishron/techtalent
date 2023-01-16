@@ -1,12 +1,11 @@
-@import "../../styles/palette.scss";
-
 .card {
   display: flex;
   flex-direction: column;
   border-radius: 0.2em;
-  background-color: #fff;
-
-  border: 1px solid darken($color-bg, 60);
+  background-color: var(--input-color);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-color) 0px 1px 2px;
+  gap: 1em;
   .card-head {
     display: flex;
     flex-direction: row;
@@ -19,9 +18,9 @@
     flex-direction: column;
     padding: 0 1em;
     svg {
-      color: lighten($color-text, 40);
+      color: var(--mark-color);
       &:hover {
-        color: $color-red;
+        color: var(--color-red-00);
       }
     }
   }
@@ -33,13 +32,14 @@
     padding: 0 1em;
     margin-bottom: 1em;
     .card-fav {
-      color: $color-red;
+      color: var(--special-color);
       animation: latido 2s;
       animation-iteration-count: 2;
     }
     svg {
       display: flex;
       align-items: center;
+      color: var(--special-color);
     }
   }
 }
@@ -48,7 +48,7 @@
   flex-direction: row;
   align-items: center;
   font-size: 0.8em;
-  color: lighten($color-text, 50);
+  color: var(--text-soft-color);
   gap: 0.5em;
 
   margin-top: 30px;
@@ -59,24 +59,29 @@
   }
 }
 .job-title {
-  color: darken($color-secondary, 20);
+  color: var(--special-color);
   font-size: 1.15em;
   line-height: 2em;
 }
 .job-company {
   font-weight: 600;
+  color: var(--text-strong-color);
+}
+.job-details {
+  color: var(--text-soft-color);
 }
 .job-location {
   display: flex;
   flex-direction: row;
   align-items: center;
+  color: var(--text-soft-color);
   gap: 0.25em;
 }
 canvas {
   height: 50px;
   width: 50px;
   border-radius: 1em;
-  border: 1px solid darken($color-bg, 10);
+  border: 1px solid var(--border-color);
 }
 
 @keyframes latido {

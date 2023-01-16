@@ -32,7 +32,7 @@ export const Card = ({ job }) => {
       <div className="card-body">
         <h3 className="job-title">{job.position}</h3>
         <span className="job-company">{job.company}</span>
-        <span>
+        <span className="job-details">
           {job.employment_type} - {job.work_setting}
         </span>
       </div>
