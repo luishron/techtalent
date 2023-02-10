@@ -2,6 +2,7 @@
 
 .jobs-filters {
   margin-top: -2rem;
+  min-height: calc(100vh - 264px);
   .filters {
     padding: 1em;
     border-radius: 0.2em;
@@ -54,4 +55,19 @@ select {
   flex-direction: row;
   justify-content: flex-end;
   padding: 1em 0;
+}
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  .not-found-icon img {
+    height: 10em;
+    width: auto;
+  }
+  .not-found-text {
+    color: var(--text-strong-color);
+    font-weight: 200;
+  }
 }

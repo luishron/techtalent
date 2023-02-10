@@ -1,19 +1,29 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useMemo } from "react";
 import { GoLocation, GoSearch } from "react-icons/go";
+import NotFound from "../../assets/not-found.svg";
 import { JobsContext } from "../../context/JobContext";
 import { jobs } from "../../data";
 import { Card } from "../card/Card";
 import "./filters.scss";
 export const Filters = () => {
   const { state, dispatch } = useContext(JobsContext);
-  const workingModes = [...new Set(jobs.map((job) => job.work_setting))];
-  const jobTypes = [...new Set(jobs.map((job) => job.employment_type))];
-  const jobLocation = [...new Set(jobs.map((job) => job.location))];
+
+  const workingModes = useMemo(
+    () => [...new Set(jobs.map((job) => job.work_setting))],
+    []
+  );
+  const jobTypes = useMemo(
+    () => [...new Set(jobs.map((job) => job.employment_type))],
+    []
+  );
+  const jobLocation = useMemo(
+    () => [...new Set(jobs.map((job) => job.location))],
+    []
+  );
 
   const handleFilter = useCallback(() => {
-    // Crea una copia de los trabajos
     let filtered = [...jobs];
-    // Filtra los trabajos por cada filtro activo
+
     if (state.searchValue) {
       filtered = filtered.filter(
         (job) =>
@@ -36,7 +46,6 @@ export const Filters = () => {
         (job) => job.work_setting === state.workSettingValue
       );
     }
-    // Actualiza el estado con los trabajos filtrados
     dispatch({ type: "SET_FILTERED_JOBS", value: filtered });
   }, [
     state.searchValue,
@@ -45,6 +54,13 @@ export const Filters = () => {
     state.workSettingValue,
     dispatch,
   ]);
+
+  const handleResetSelect = () => {
+    dispatch({
+      type: "RESET_SELECT",
+      payload: { locationValue: "", typeValue: "", workSettingValue: "" },
+    });
+  };
 
   useEffect(() => {
     handleFilter();
@@ -69,11 +85,14 @@ export const Filters = () => {
             <GoLocation />
             <select
               value={state.locationValue}
-              defaultValue=""
               onChange={(e) => {
                 dispatch({
                   type: "SET_LOCATION_FILTER",
                   value: e.target.value,
+                });
+                dispatch({
+                  type: "SET_CANCEL_LOCATION_ICON",
+                  value: e.target.value !== "",
                 });
                 handleFilter();
               }}
@@ -87,12 +106,37 @@ export const Filters = () => {
                 </option>
               ))}
             </select>
+            {state.locationValue !== "" && (
+              <span
+                onClick={() => {
+                  dispatch({
+                    type: "RESET_LOCATION_FILTER",
+                    payload: { locationValue: "" },
+                  });
+                  dispatch({
+                    type: "SET_CANCEL_LOCATION_ICON",
+                    value: false,
+                  });
+                  handleFilter();
+                }}
+              >
+                x
+              </span>
+            )}
           </div>
+
           <div className="employment-type">
             <select
               value={state.typeValue}
               onChange={(e) => {
-                dispatch({ type: "SET_TYPE_FILTER", value: e.target.value });
+                dispatch({
+                  type: "SET_TYPE_FILTER",
+                  value: e.target.value,
+                });
+                dispatch({
+                  type: "SET_CANCEL_TYPE_ICON",
+                  value: e.target.value !== "",
+                });
                 handleFilter();
               }}
             >
@@ -105,6 +149,23 @@ export const Filters = () => {
                 </option>
               ))}
             </select>
+            {state.typeValue !== "" && (
+              <span
+                onClick={() => {
+                  dispatch({
+                    type: "RESET_TYPE_FILTER",
+                    payload: { typeValue: "" },
+                  });
+                  dispatch({
+                    type: "SET_CANCEL_TYPE_ICON",
+                    value: false,
+                  });
+                  handleFilter();
+                }}
+              >
+                x
+              </span>
+            )}
           </div>
           <div className="work-setting">
             <select
@@ -113,6 +174,10 @@ export const Filters = () => {
                 dispatch({
                   type: "SET_WORKSETTING_FILTER",
                   value: e.target.value,
+                });
+                dispatch({
+                  type: "SET_CANCEL_WORKSETTING_ICON",
+                  value: e.target.value !== "",
                 });
                 handleFilter();
               }}
@@ -126,16 +191,43 @@ export const Filters = () => {
                 </option>
               ))}
             </select>
+            {state.workSettingValue !== "" && (
+              <span
+                onClick={() => {
+                  dispatch({
+                    type: "RESET_WORKSETTING_FILTER",
+                    payload: { workSettingValue: "" },
+                  });
+                  dispatch({
+                    type: "SET_CANCEL_WORKSETTING_ICON",
+                    value: false,
+                  });
+                  handleFilter();
+                }}
+              >
+                x
+              </span>
+            )}
           </div>
         </div>
         <div className="jobs-list-details">
           Results: {state.filteredJobs.length} - Fav: {state.favorites.length}
+          <button onClick={handleResetSelect}>Reset Select</button>
         </div>
-        <div className="jobs-list">
-          {state.filteredJobs.map((job) => (
-            <Card job={job} key={job.id} />
-          ))}
-        </div>
+        {state.filteredJobs.length > 0 ? (
+          <div className="jobs-list">
+            {state.filteredJobs.map((job) => (
+              <Card job={job} key={job.id} />
+            ))}
+          </div>
+        ) : (
+          <div className="not-found">
+            <span className="not-found-icon">
+              <img src={NotFound} alt="No matching jobs found" />
+            </span>
+            <h3 className="not-found-text">No matching jobs found.</h3>
+          </div>
+        )}
       </div>
     </div>
   );

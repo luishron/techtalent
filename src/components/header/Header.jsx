@@ -1,3 +1,4 @@
+import Logo from "../../assets/logo.svg";
 import { DarkModeSwitch } from "../dark-mode-switch/DarkModeSwitch";
 import "./header.scss";
 
@@ -6,7 +7,12 @@ export const Header = () => {
     <header>
       <div className="container">
         <div className="navbar">
-          <span className="brand">TechTalent</span>
+          <div className="brand">
+            <span className="logo">
+              <img src={Logo} alt="Logo TechTalent" />
+            </span>
+            <span className="logo-text">TechTalent</span>
+          </div>
           <DarkModeSwitch />
         </div>
       </div>

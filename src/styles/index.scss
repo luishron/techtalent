@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&family=Prompt:wght@400;600&display=swap");
 
-@import "./palette.scss";
 @import "./paleta.scss";
 
 *,
@@ -40,8 +39,8 @@ body {
 a {
   text-decoration: none;
 }
-span.brand {
-  color: lighten($color-green, 45);
+.brand {
+  color: var(--dark-color);
   font-family: "Prompt", sans-serif;
   font-weight: 600;
   letter-spacing: 1.5px;

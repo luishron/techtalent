@@ -9,8 +9,9 @@ body[data-theme="light"] {
   --input-color: rgba(255, 255, 255, 1);
   --outline-color: rgba(203, 184, 245, 1);
   --mark-color: rgba(159, 97, 252, 0.08);
-  --special-color: rgba(159, 97, 252, 1);
-  --special-bg-color: rgba(161, 103, 252, 1);
+  --special-color: rgb(159, 97, 252);
+  --complementary-bg-color: rgb(91, 252, 216);
+  --special-bg-color: #a167fc;
   --special-text-color: rgba(255, 255, 255, 1);
   --special-shadow-color: rgba(99, 87, 127, 1);
   --special-mark-color: rgba(255, 255, 255, 0.08);
@@ -41,7 +42,8 @@ body[data-theme="dark"] {
   --outline-color: rgba(171, 146, 223, 1);
   --mark-color: rgba(159, 115, 236, 0.08);
   --special-color: rgba(159, 115, 236, 1);
-  --special-bg-color: rgba(128, 53, 221, 1);
+  --complementary-bg-color: rgb(43, 222, 195);
+  --special-bg-color: rgb(128, 53, 221);
   --special-text-color: rgba(224, 222, 230, 1);
   --special-shadow-color: rgba(33, 28, 44, 1);
   --special-mark-color: rgba(224, 222, 230, 0.08);

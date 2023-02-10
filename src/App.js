@@ -1,7 +1,6 @@
 import React from "react";
 import { Filters, Footer, Header, Hero } from "./components";
-import { JobsProvider } from "./context/JobContext";
-import { ThemeProvider } from "./context/ThemeContext";
+import { JobsProvider, ThemeProvider } from "./context";
 import "./styles/index.scss";
 
 function App() {

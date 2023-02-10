@@ -7,7 +7,7 @@ export const JobList = () => {
   return (
     <div className="container">
       <div className="jobs-list">
-        {jobs.map((job, i) => (
+        {jobs.map((job) => (
           <Card job={job} key={job.id} />
         ))}
       </div>
